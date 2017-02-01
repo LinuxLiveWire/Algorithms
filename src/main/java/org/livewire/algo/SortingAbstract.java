@@ -13,7 +13,7 @@ import java.util.Random;
  * @author sergey
  */
 public abstract class SortingAbstract implements SortingInterface {
-    final private int defaultSize = 100;
+    final private int defaultSize = 10;
     final private int MAX_INT = 99;
     protected Comparable []  array;
     protected long counter = 0;
@@ -59,6 +59,6 @@ public abstract class SortingAbstract implements SortingInterface {
     }
     
     public void print() {
-        System.out.println(String.format("%d: %s", counter, Arrays.toString(array)));
+        System.out.println(Arrays.toString(array));
     }
 }
