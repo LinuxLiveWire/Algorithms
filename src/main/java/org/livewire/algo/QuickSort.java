@@ -12,45 +12,25 @@ import java.util.Arrays;
  *
  * @author sergey
  */
-public class QuickSort {
-
-    final private int defaultSize = 100;
-    final private int MAX_INT = 99;
-    private Comparable []  array;
-    private long counter = 0;
-    Random rand;
+public class QuickSort extends SortingAbstract {
     
     public QuickSort() {
-        array = new Integer[defaultSize];
-        for(int i = 0; i<defaultSize; ++i) {
-            array[i] = new Integer(defaultSize-i);
-        }
+        super();
     }
     
     public QuickSort(int size) {
-        array = new Integer[size];
-        rand = new Random();
-        for(int i = 0; i<size; ++i) {
-            array[i] = rand.nextInt(MAX_INT);
-        }
+        super(size);
     }
-    
+
     public QuickSort(Comparable[] init) {
-        array = init;
+        super(init);
     }
     
     public void sort() {
         counter = 0;
         subsort(0, array.length-1);
     }
-
-    private void exch(int i, int j) {
-        Object swap = array[i];
-        array[i] = array[j];
-        array[j] = (Comparable)swap;
-        ++counter;
-    }
-
+    
     private void subsort(int lo, int hi) {
         if (lo>=hi)
             return;
@@ -62,26 +42,9 @@ public class QuickSort {
             if (l>=r) break;
             exch(l, r);
         }
-        exch(lo, r);
+        super.exch(lo, r);
         subsort(lo, r-1);
         subsort(r+1, hi);
     }
-    
-    public boolean isSorted() {
-        for(int i=0; i<array.length-1; ++i) {
-            if (array[i].compareTo(array[i+1])>0)
-                return false;
-        }
-        return true;
-    }
-    
-    public void stats() {
-        System.out.println(String.format("Len: %d; Ord: %b; Exch: %d",
-                array.length, isSorted(), counter));
-    }
-    
-    public void print() {
-        System.out.println(String.format("%d: %s", counter, Arrays.toString(array)));
-    }
-    
+
 }
